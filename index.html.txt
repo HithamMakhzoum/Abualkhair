@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشويات أبو الخير - الطعم الأصيل</title>
+    <!-- استيراد خط تجوال الفخم -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --dark-gold: #aa841b;
+            --black: #111111;
+            --light-black: #1a1a1a;
+            --white: #ffffff;
+            --gray: #aaaaaa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+        }
+
+        /* الهيدر واللوغو */
+        header {
+            background-color: var(--light-black);
+            border-bottom: 2px solid var(--gold);
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--white);
+            font-size: 16px;
+            display: block;
+            margin-top: 5px;
+            font-weight: normal;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* المنيو */
+        .menu-section {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .section-title {
+            color: var(--gold);
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-item {
+            background-color: var(--light-black);
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .item-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .item-price {
+            color: var(--gold);
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .add-btn {
+            background-color: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .add-btn:hover {
+            background-color: var(--dark-gold);
+        }
+
+        /* السلة */
+        .cart-section {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--light-black);
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+            padding: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty-btn {
+            background-color: #333;
+            color: var(--white);
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .qty-btn:hover {
+            background-color: var(--gold);
+            color: var(--black);
+        }
+
+        .cart-total {
+            font-size: 20px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-top: 1px solid var(--gold);
+            padding-top: 15px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background-color: var(--black);
+            color: var(--white);
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .order-btn {
+            width: 100%;
+            background-color: #25D366; /* لون الواتساب */
+            color: var(--white);
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .order-btn:hover {
+            background-color: #128C7E;
+        }
+
+        /* التذييل */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--gray);
+            font-size: 14px;
+            margin-top: 40px;
+            background-color: var(--light-black);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">🔥 مشويات أبو الخير <span>أفخم أنواع المشاوي اللحم والدجاج</span></div>
+    </header>
+
+    <div class="container">
+        <!-- قسم المنيو -->
+        <main class="menu-section">
+            <h2 class="section-title">قائمة الطعام (المنيو)</h2>
+            <div class="menu-grid" id="menu-container">
+                <!-- سيتم توليد العناصر برمجياً هنا -->
+            </div>
+        </main>
+
+        <!-- قسم السلة -->
+        <aside class="cart-section">
+            <h2 class="section-title">سلة الطلبات</h2>
+            <div class="cart-items" id="cart-container">
+                <p style="color: var(--gray); text-align: center;">السلة فارغة حالياً</p>
+            </div>
+            
+            <div class="cart-total">
+                <span>المجموع:</span>
+                <span id="total-price">0 ل.س</span>
+            </div>
+
+            <input type="text" id="customer-name" class="input-field" placeholder="اسمك الكريم" required>
+            <input type="text" id="customer-address" class="input-field" placeholder="العنوان بالتفصيل" required>
+            
+            <button class="order-btn" onclick="sendToWhatsApp()">🟢 إرسال الطلب عبر الواتساب</button>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 مشويات أبو الخير - جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // تم تحديث رقم الواتساب الخاص بك هنا بنجاح
+        const WHATSAPP_NUMBER = "963982691478"; 
+
+        // بيانات المنيو
+        const menuProducts = [
+            { id: 1, name: "مشاوي لحم مشكلة (كباب وشقف)", price: 180000, unit: "كيلو" },
+            { id: 2, name: "مشاوي دجاج مشكلة (كباب وشقف)", price: 100000, unit: "كيلو" },
+            { id: 3, name: "سودة دجاج مشوية", price: 90000, unit: "كيلو" },
+            { id: 4, name: "سودة غنم مشوية", price: 160000, unit: "كيلو" },
+            { id: 5, name: "لبن عيران", price: 5000, unit: "عدد" },
+            { id: 6, name: "بيبسي", price: 7000, unit: "عدد" }
+        ];
+
+        let cart = [];
+
+        // عرض المنيو في الصفحة
+        function displayMenu() {
+            const menuContainer = document.getElementById('menu-container');
+            menuContainer.innerHTML = menuProducts.map(product => `
+                <div class="menu-item">
+                    <div>
+                        <div class="item-name">${product.name}</div>
+                        <div class="item-price">${product.price.toLocaleString()} ل.س / ${product.unit}</div>
+                    </div>
+                    <button class="add-btn" onclick="addToCart(${product.id})">إضافة للسلة</button>
+                </div>
+            `).join('');
+        }
+
+        // إضافة عنصر للسلة
+        function addToCart(id) {
+            const product = menuProducts.find(p => p.id === id);
+            const cartItem = cart.find(item => item.id === id);
+
+            if (cartItem) {
+                cartItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            updateCart();
+        }
+
+        // تغيير الكمية في السلة
+        function changeQuantity(id, delta) {
+            const cartItem = cart.find(item => item.id === id);
+            if (cartItem) {
+                cartItem.quantity += delta;
+                if (cartItem.quantity <= 0) {
+                    cart = cart.filter(item => item.id !== id);
+                }
+            }
+            updateCart();
+        }
+
+        // تحديث واجهة السلة والمجموع
+        function updateCart() {
+            const cartContainer = document.getElementById('cart-container');
+            const totalPriceEl = document.getElementById('total-price');
+            
+            if (cart.length === 0) {
+                cartContainer.innerHTML = `<p style="color: var(--gray); text-align: center;">السلة فارغة حالياً</p>`;
+                totalPriceEl.innerText = "0 ل.س";
+                return;
+            }
+
+            let total = 0;
+            cartContainer.innerHTML = cart.map(item => {
+                total += item.price * item.quantity;
+                return `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div><strong>${item.name}</strong></div>
+                            <div style="color: var(--gold); font-size: 14px;">${(item.price * item.quantity).toLocaleString()} ل.س</div>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="changeQuantity(${item.id}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="qty-btn" onclick="changeQuantity(${item.id}, 1)">+</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            totalPriceEl.innerText = total.toLocaleString() + " ل.س";
+        }
+
+        // إرسال الطلب عبر الواتساب
+        function sendToWhatsApp() {
+            const name = document.getElementById('customer-name').value.trim();
+            const address = document.getElementById('customer-address').value.trim();
+
+            if (cart.length === 0) {
+                alert("يرجى إضافة بعض الأصناف إلى السلة أولاً!");
+                return;
+            }
+            if (!name || !address) {
+                alert("يرجى ملء الاسم والعنوان لإتمام الطلب.");
+                return;
+            }
+
+            // تجهيز نص الرسالة للواتساب
+            let message = `*طلب جديد من موقع مشويات أبو الخير* 🔥\n\n`;
+            message += `👤 *الاسم:* ${name}\n`;
+            message += `📍 *العنوان:* ${address}\n\n`;
+            message += `🛒 *الطلبات:*\n`;
+
+            let total = 0;
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                message += `- ${item.name} (الكمية: ${item.quantity}) -> ${itemTotal.toLocaleString()} ل.س\n`;
+            });
+
+            message += `\n💰 *المجموع الإجمالي:* ${total.toLocaleString()} ل.س`;
+
+            // ترميز النص ليتوافق مع الرابط
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+            // فتح الواتساب في نافذة جديدة
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // تشغيل عرض المنيو عند فتح الصفحة
+        displayMenu();
+    </script>
+</body>
+</html>
